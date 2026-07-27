@@ -42,7 +42,7 @@ jobs:
         with:
           targetPlatform: WebGL
           unityVersion: 6000.0.37f1
-          customParameters: -nographics -compressionFormat Disabled
+          customParameters: -nographics
 
       - name: Upload WebGL Build
         uses: actions/upload-artifact@v4
