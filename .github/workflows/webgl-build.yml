@@ -43,6 +43,19 @@ jobs:
           targetPlatform: WebGL
           unityVersion: 6000.0.37f1
 
+      - name: Decompress build files
+        run: |
+          sudo apt-get install -y brotli
+          cd build/WebGL/WebGL
+          # Decompress all .br files
+          find . -name "*.br" -type f | while read f; do
+            brotli -d "$f" && rm "$f"
+          done
+          # Decompress all .gz files
+          find . -name "*.gz" -type f | while read f; do
+            gunzip -f "$f"
+          done
+
       - name: Upload WebGL Build
         uses: actions/upload-artifact@v4
         with:
