@@ -44,6 +44,11 @@ jobs:
           unityVersion: 6000.0.37f1
           customParameters: -nographics
 
+      - name: Add Favicon
+        run: |
+          cp public/lainfernLogo.png build/WebGL/WebGL/lainfernLogo.png
+          sed -i 's|</head>|<link rel="icon" type="image/png" href="lainfernLogo.png">\n</head>|' build/WebGL/WebGL/index.html
+
       - name: Upload WebGL Build
         uses: actions/upload-artifact@v4
         with:
