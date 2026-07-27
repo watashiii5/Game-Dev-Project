@@ -46,12 +46,11 @@ jobs:
       - name: Decompress build files
         run: |
           sudo apt-get install -y brotli
+          sudo chmod -R 777 build/WebGL/WebGL
           cd build/WebGL/WebGL
-          # Decompress all .br files
           find . -name "*.br" -type f | while read f; do
             brotli -d "$f" && rm "$f"
           done
-          # Decompress all .gz files
           find . -name "*.gz" -type f | while read f; do
             gunzip -f "$f"
           done
